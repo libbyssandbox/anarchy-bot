@@ -3,6 +3,12 @@ local anarchy_bot_commands = anarchy_bot.commands
 
 anarchy_bot_commands.list = {}
 
+function anarchy_bot_commands.find(name)
+	name = name:lower()
+
+	return anarchy_bot_commands.list[name]
+end
+
 function anarchy_bot_commands.load_static()
 	local files = file.Find("anarchy_bot/commands/*.lua", "LUA")
 
