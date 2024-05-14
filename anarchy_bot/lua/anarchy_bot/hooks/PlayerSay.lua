@@ -6,11 +6,13 @@ libbys.hook.create_unique("PlayerSay", function(ply, text, is_team_chat)
 
 	for k, command in next, anarchy_bot.commands.list do
 		if k == command_name then
-			if is_team_chat then
-				anarchy_bot.bot_say("I don't run commands in team chat, %s. Stop being a bitch!", ply:GetName())
-			else
-				command:call(ply, unpack(args, 2))
-			end
+			timer.Simple(0, function()
+				if is_team_chat then
+					anarchy_bot.bot_say("I don't run commands in team chat, %s. Stop being a bitch!", ply:GetName())
+				else
+					command:call(ply, unpack(args, 2))
+				end
+			end)
 
 			break
 		end
