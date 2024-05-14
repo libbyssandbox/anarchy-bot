@@ -8,6 +8,14 @@ function COMMAND:init()
 	self.m_iCooldownDuration = 0
 	self.m_Cooldowns = {}
 	self.m_bUseGlobalCooldown = false
+
+	self:describe()
+end
+
+function COMMAND:describe()
+	-- For override
+	self.m_strName = "BASE_COMMAND"
+	self.m_strDescription = "BASE_COMMAND"
 end
 
 function COMMAND:cleanup_cooldowns()
