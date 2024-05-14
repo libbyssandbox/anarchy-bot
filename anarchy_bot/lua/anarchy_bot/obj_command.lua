@@ -42,6 +42,18 @@ function COMMAND:set_enabled(state)
 	self.m_bEnabled = state
 end
 
+function COMMAND:set_cooldown(amount)
+	libbys.arguments.validate(2, "number")
+
+	self.m_iCooldownDuration = math.Round(math.abs(amount))
+end
+
+function COMMAND:set_global_cooldown(state)
+	libbys.arguments.validate(2, "boolean")
+
+	self.m_bUseGlobalCooldown = state
+end
+
 function COMMAND:cleanup_cooldowns()
 	local time = CurTime()
 	local remove = {}
