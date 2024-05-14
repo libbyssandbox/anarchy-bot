@@ -18,3 +18,12 @@ function anarchy_bot.get_bot()
 		return anarchy_bot.spawn_bot()
 	end
 end
+
+function anarchy_bot.bot_say(message, ...)
+	libbys.arguments.validate(1, "string")
+
+	local bot = anarchy_bot.get_bot()
+	if not IsValid(bot) then return end
+
+	bot:Say(message:format(...))
+end
