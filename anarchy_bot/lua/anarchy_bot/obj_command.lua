@@ -27,7 +27,7 @@ end
 function COMMAND:set_description(description)
 	libbys.arguments.validate(2, "string")
 
-	self.m_strDescription = description:lower()
+	self.m_strDescription = description
 end
 
 function COMMAND:set_admin_only(state)
