@@ -7,6 +7,8 @@ do
 		anarchy_bot.kick_bot("Reloading")
 
 		timer.Simple(0, anarchy_bot.spawn_bot)
+	else
+		anarchy_bot.m_pBot = NULL
 	end
 end
 
