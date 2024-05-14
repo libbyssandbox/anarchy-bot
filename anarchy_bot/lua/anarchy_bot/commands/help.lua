@@ -29,7 +29,7 @@ function COMMAND:do_call(ply, command_name)
 		-- Maybe some form of caching?
 		local command_list = {}
 
-		for command_name, command in next, anarchy_bot.commands.list do
+		for command_name, command in SortedPairs(anarchy_bot.commands.list) do
 			if not self:should_display(ply, command) then continue end
 
 			table.insert(command_list, "!" .. command_name)
