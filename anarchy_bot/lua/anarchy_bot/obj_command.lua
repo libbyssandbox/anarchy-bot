@@ -19,25 +19,25 @@ function COMMAND:describe()
 end
 
 function COMMAND:set_name(name)
-	libbys.arguments.validate(1, "string")
+	libbys.arguments.validate(2, "string")
 
 	self.m_strName = name:lower()
 end
 
 function COMMAND:set_description(description)
-	libbys.arguments.validate(1, "string")
+	libbys.arguments.validate(2, "string")
 
 	self.m_strDescription = description:lower()
 end
 
 function COMMAND:set_admin_only(state)
-	libbys.arguments.validate(1, "boolean")
+	libbys.arguments.validate(2, "boolean")
 
 	self.m_bAdminOnly = state
 end
 
 function COMMAND:set_enabled(state)
-	libbys.arguments.validate(1, "boolean")
+	libbys.arguments.validate(2, "boolean")
 
 	self.m_bEnabled = state
 end
