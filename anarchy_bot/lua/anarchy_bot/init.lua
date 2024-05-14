@@ -13,6 +13,7 @@ do
 end
 
 -- Commands
+include("obj_command.lua")
 include("commands.lua")
 
 -- Hooks

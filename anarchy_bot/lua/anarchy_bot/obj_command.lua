@@ -105,4 +105,4 @@ function COMMAND:do_call(ply, ...)
 	-- For override
 end
 
-return COMMAND
+return libbys.objects.define_class("anarchy_bot_BaseCommand", COMMAND)
