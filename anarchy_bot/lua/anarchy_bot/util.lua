@@ -1,7 +1,5 @@
 function anarchy_bot.kick_bot(reason)
-	if anarchy_bot.m_pBot:IsValid() then
-		anarchy_bot.m_pBot:Kick(reason)
-	end
+	anarchy_bot.run_on_bot(libbys.metatables.Player.Kick, reason)
 end
 
 function anarchy_bot.spawn_bot()
