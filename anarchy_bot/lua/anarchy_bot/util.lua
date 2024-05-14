@@ -10,11 +10,17 @@ function anarchy_bot.spawn_bot()
 end
 
 function anarchy_bot.get_bot()
-	if IsValid(anarchy_bot.m_pBot) then
-		return anarchy_bot.m_pBot
-	else
+	return anarchy_bot.m_pBot
+end
+
+function anarchy_bot.ensure_bot()
+	local bot = anarchy_bot.get_bot()
+
+	if not IsValid(bot) then
 		return anarchy_bot.spawn_bot()
 	end
+
+	return bot
 end
 
 function anarchy_bot.run_on_bot(callback, ...)
