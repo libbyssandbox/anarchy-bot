@@ -1,6 +1,6 @@
 libbys.hook.create_unique("PlayerSay", function(ply, text, is_team_chat)
 	if ply:IsBot() then return end -- Don't let bots, including ourselves, use this
-	if not text:StartsWith("!") then return end
+	if not text:StartsWith("!") or text:len() < 2 then return end
 
 	local args = text:sub(2):Split(" ")
 
