@@ -1,6 +1,9 @@
 local COMMAND = {}
 
 function COMMAND:describe()
+	self:set_cooldown(10)
+	self:set_global_cooldown(true)
+
 	self:set_name("help")
 	self:set_description("!help | !help (command name)")
 end
