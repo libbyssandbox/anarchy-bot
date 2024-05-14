@@ -4,6 +4,8 @@ local anarchy_bot_commands = anarchy_bot.commands
 anarchy_bot_commands.list = {}
 
 function anarchy_bot_commands.find(name)
+	libbys.arguments.validate(1, "string")
+
 	name = name:lower()
 
 	return anarchy_bot_commands.list[name]
