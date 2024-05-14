@@ -12,7 +12,7 @@ function anarchy_bot.spawn_bot()
 end
 
 function anarchy_bot.get_bot()
-	if anarchy_bot.m_pBot:IsValid() then
+	if IsValid(anarchy_bot.m_pBot) then
 		return anarchy_bot.m_pBot
 	else
 		return anarchy_bot.spawn_bot()
