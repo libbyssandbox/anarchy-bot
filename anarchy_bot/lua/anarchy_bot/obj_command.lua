@@ -30,6 +30,18 @@ function COMMAND:set_description(description)
 	self.m_strDescription = description:lower()
 end
 
+function COMMAND:set_admin_only(state)
+	libbys.arguments.validate(1, "boolean")
+
+	self.m_bAdminOnly = state
+end
+
+function COMMAND:set_enabled(state)
+	libbys.arguments.validate(1, "boolean")
+
+	self.m_bEnabled = state
+end
+
 function COMMAND:cleanup_cooldowns()
 	local time = CurTime()
 	local remove = {}
