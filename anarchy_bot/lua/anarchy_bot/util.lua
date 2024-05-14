@@ -20,31 +20,13 @@ function anarchy_bot.get_bot()
 end
 
 function anarchy_bot.split_message(message)
+	libbys.arguments.validate(1, "string")
+
 	local splits = {}
-	local buffer = ""
-	local length = 0
 
-	if not message:EndsWith(" ") then
-		message = message .. " " -- Ensure the last word gets matched
+	for i = 1, message:len(), 126 do
+		splits[#splits + 1] = message:sub(i, i + 126)
 	end
-
-	for _, split in message:gmatch("(%s?[%S]+)") do
-		if length + split:len() >= 127 then
-			if split:StartsWith(" ") then
-				split = split:sub(2)
-			end
-
-			table.insert(splits, buffer)
-
-			buffer = split
-			length = split:len()
-		else
-			buffer = buffer .. split
-			length = length + split:len()
-		end
-	end
-
-	table.insert(splits, buffer)
 
 	return splits
 end
@@ -55,9 +37,11 @@ function anarchy_bot.bot_say(message, ...)
 	local bot = anarchy_bot.get_bot()
 	if not IsValid(bot) then return end
 
-	message = message:format(...)
+	message = message:format(...):Trim()
 
-	for _, split in ipairs(anarchy_bot.split_message(message)) do
-		bot:Say(split)
+	local splits = anarchy_bot.split_message(message)
+
+	for i = 1, #splits do
+		bot:Say(splits[i])
 	end
 end
