@@ -1,20 +1,15 @@
-libbys.metatables.CMoveData.RemoveKey = function(self, key) -- Needs to be built-in
-	libbys.arguments.validate(2, "number")
-
-	self:SetButtons(bit.band(self:GetButtons(), bit.bnot(key)))
-end
-
-libbys.hook.create_unique("SetupMove", function(ply, mv, cmd)
+libbys.hook.create_unique("StartCommand", function(ply, cmd)
 	if ply ~= anarchy_bot.get_bot() then return end
 
 	if ply:IsFrozen() or ply:IsEFlagSet(EFL_BOT_FROZEN) then return end
 	if ply:Health() < ply:GetMaxHealth() then return end
 
-	mv:RemoveKey(IN_DUCK)
-	cmd:RemoveKey(IN_DUCK)
-
-	mv:SetForwardSpeed(ply:GetWalkSpeed())
 	cmd:SetForwardMove(ply:GetWalkSpeed())
+	if GetConVar("bot_crouch"):GetBool() then
+		cmd:AddKey(IN_DUCK)
+	else
+		cmd:RemoveKey(IN_DUCK)
+	end
 
 	local face_location = ply:EyePos()
 	local face_angles = cmd:GetViewAngles()
