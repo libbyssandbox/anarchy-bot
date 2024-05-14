@@ -8,6 +8,8 @@ libbys.hook.create_unique("PlayerSay", function(ply, text, is_team_chat)
 
 	if command then
 		timer.Simple(0, function()
+			if not IsValid(ply) then return end
+
 			if is_team_chat then
 				anarchy_bot.bot_say("I don't run commands in team chat, %s. Stop being a bitch!", ply:GetName())
 			else
