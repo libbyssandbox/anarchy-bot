@@ -113,7 +113,7 @@ function COMMAND:can_call(ply, ...)
 	if self.m_bAdminOnly and not ply:IsAdmin() then return false end
 
 	if self:has_cooldown_for(ply) then
-		local cooldown = CurTime() - self:get_cooldown_for(ply)
+		local cooldown = self:get_cooldown_for(ply) - CurTime()
 		cooldown = math.ceil(cooldown)
 
 		anarchy_bot.bot_say("You can't run this command yet! Wait %s!", string.NiceTime(cooldown))
