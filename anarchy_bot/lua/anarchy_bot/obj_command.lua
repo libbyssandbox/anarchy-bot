@@ -70,7 +70,7 @@ function COMMAND:cleanup_cooldowns()
 	end
 
 	for i = 1, #remove do
-		table.remove(self.m_Cooldowns, remove[i])
+		self.m_Cooldowns[remove[i]] = nil
 	end
 
 	collectgarbage("step")
@@ -99,7 +99,7 @@ function COMMAND:get_cooldown_for(ply)
 end
 
 function COMMAND:has_cooldown_for(ply)
-	return get_cooldown_for(ply) ~= nil
+	return self:get_cooldown_for(ply) ~= nil
 end
 
 function COMMAND:apply_cooldown(ply)
