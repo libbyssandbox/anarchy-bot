@@ -6,6 +6,7 @@ anarchy_bot_commands.list = {}
 function anarchy_bot_commands.load_static()
 	local files = file.Find("anarchy_bot/commands/*.lua", "LUA")
 
+	-- Load and register all the file-defined commands
 	for _, file_name in ipairs(files) do
 		local command_metatable = include("commands/" .. file_name)
 
