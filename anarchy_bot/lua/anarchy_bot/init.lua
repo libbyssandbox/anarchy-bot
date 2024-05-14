@@ -3,10 +3,10 @@ anarchy_bot = anarchy_bot or {}
 if isfunction(anarchy_bot.kick_bot) then anarchy_bot.kick_bot("Reloading") end
 anarchy_bot.m_pBot = NULL
 
-include("util.lua")
+libbys.state_include("sv_util.lua")
 
 -- Hooks
-include("hooks/OnRequestFullUpdate.lua")
-include("hooks/player_disconnect.lua")
+libbys.state_include("hooks/sv_OnRequestFullUpdate.lua")
+libbys.state_include("hooks/sv_player_disconnect.lua")
 
 -- Commands
