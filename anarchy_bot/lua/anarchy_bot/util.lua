@@ -19,6 +19,15 @@ function anarchy_bot.get_bot()
 	end
 end
 
+function anarchy_bot.run_on_bot(callback, ...)
+	libbys.arguments.validate(1, "function")
+
+	local bot = anarchy_bot.get_bot()
+	if not IsValid(bot) then return nil end
+
+	return callback(bot, ...)
+end
+
 function anarchy_bot.split_message(message)
 	libbys.arguments.validate(1, "string")
 
@@ -34,14 +43,10 @@ end
 function anarchy_bot.bot_say(message, ...)
 	libbys.arguments.validate(1, "string")
 
-	local bot = anarchy_bot.get_bot()
-	if not IsValid(bot) then return end
-
 	message = message:format(...):Trim()
-
 	local splits = anarchy_bot.split_message(message)
 
 	for i = 1, #splits do
-		bot:Say(splits[i])
+		anarchy_bot.run_on_bot(libbys.metatables.Player.Say, splits[i])
 	end
 end
