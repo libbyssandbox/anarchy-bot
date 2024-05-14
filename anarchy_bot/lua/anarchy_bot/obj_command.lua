@@ -14,8 +14,20 @@ end
 
 function COMMAND:describe()
 	-- For override
-	self.m_strName = "BASE_COMMAND"
-	self.m_strDescription = "BASE_COMMAND"
+	self:set_name("BASE_COMMAND")
+	self:set_description("BASE_COMMAND")
+end
+
+function COMMAND:set_name(name)
+	libbys.arguments.validate(1, "string")
+
+	self.m_strName = name:lower()
+end
+
+function COMMAND:set_description(description)
+	libbys.arguments.validate(1, "string")
+
+	self.m_strDescription = description:lower()
 end
 
 function COMMAND:cleanup_cooldowns()

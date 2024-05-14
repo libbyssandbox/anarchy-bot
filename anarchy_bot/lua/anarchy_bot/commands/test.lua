@@ -1,8 +1,8 @@
 local COMMAND = {}
 
 function COMMAND:describe()
-	self.m_strName = "test"
-	self.m_strDescription = "Test command"
+	self:set_name("test")
+	self:set_description("Test command")
 end
 
 function COMMAND:call(ply, arg1)
