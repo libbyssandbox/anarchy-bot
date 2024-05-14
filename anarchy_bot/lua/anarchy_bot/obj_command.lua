@@ -50,16 +50,20 @@ function COMMAND:in_cooldown()
 	return false
 end
 
-function COMMAND:has_cooldown_for(ply)
+function COMMAND:get_cooldown_for(ply)
 	if not self:in_cooldown() then
-		return false
+		return nil
 	end
 
 	if self.m_bUseGlobalCooldown then
-		return true
+		return self.m_Cooldowns["_GLOB"]
 	else
-		return self.m_Cooldowns[ply] ~= nil
+		return self.m_Cooldowns[ply]
 	end
+end
+
+function COMMAND:has_cooldown_for(ply)
+	return get_cooldown_for(ply) ~= nil
 end
 
 function COMMAND:apply_cooldown(ply)
@@ -69,9 +73,17 @@ function COMMAND:apply_cooldown(ply)
 end
 
 function COMMAND:can_call(ply, ...)
-	if not self.m_bEnabled then return false, true end
-	if self:has_cooldown_for(ply) then return false, true end
-	if self.m_bAdminOnly and not ply:IsAdmin() then return false, true end
+	if not self.m_bEnabled then return false end
+	if self.m_bAdminOnly and not ply:IsAdmin() then return false end
+
+	if self:has_cooldown_for(ply) then
+		local cooldown = CurTime() - self:get_cooldown_for(ply)
+		cooldown = math.ceil(cooldown)
+
+		anarchy_bot.bot_say("You can't run this command yet! Wait %s!", string.NiceTime(cooldown))
+
+		return false
+	end
 
 	return self:should_call(ply, ...)
 end
