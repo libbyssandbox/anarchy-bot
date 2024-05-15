@@ -132,9 +132,9 @@ end
 function COMMAND:call(ply, ...)
 	if not self:can_call(ply, ...) then return end
 
-	self:do_call(ply, ...)
-
-	self:apply_cooldown(ply)
+	if not self:do_call(ply, ...) then
+		self:apply_cooldown(ply)
+	end
 end
 
 function COMMAND:do_call(ply, ...)
