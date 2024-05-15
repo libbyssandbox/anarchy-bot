@@ -24,6 +24,8 @@ function COMMAND:do_call(ply, command_name)
 		else
 			anarchy_bot.bot_say("!%s - %s", command.m_strName, command.m_strDescription)
 		end
+
+		return true
 	else
 		-- Construct our command list
 		-- Maybe some form of caching?
