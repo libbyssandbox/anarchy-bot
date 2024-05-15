@@ -1,5 +1,7 @@
 anarchy_bot = anarchy_bot or {}
 
+require("environment")
+
 include("util.lua")
 
 do
