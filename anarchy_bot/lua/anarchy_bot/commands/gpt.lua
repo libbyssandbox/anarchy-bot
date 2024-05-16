@@ -29,14 +29,17 @@ function COMMAND:describe()
 	end
 end
 
-function COMMAND.on_success(...)
-	print("success")
-	print(...)
+function COMMAND.on_success(code, body)
+	if code ~= 200 then return self.on_fail() end
+
+	local received = util.JSONToTable(body)
+	if not istable(received) then return self.on_fail() end
+
+	PrintTable(received)
 end
 
-function COMMAND.on_fail(...)
-	print("failed")
-	print(...)
+function COMMAND.on_fail()
+	anarchy_bot.bot_say("AI is busy taking over the world, please try later")
 end
 
 -- TODO: Chat context
