@@ -4,6 +4,17 @@ libbys.hook.create_unique("StartCommand", function(ply, cmd)
 	if ply:IsFrozen() or ply:IsEFlagSet(EFL_BOT_FROZEN) then return end
 	if ply:Health() < ply:GetMaxHealth() then return end
 
+	-- Move our angles towards a cardinal
+	local face_angles = ply:EyeAngles()
+
+	local yaw = face_angles.yaw
+	local nearest_cardinal = libbys.math.nearest_cardinal(yaw)
+
+	yaw = math.ApproachAngle(yaw, nearest_cardinal, 0.5)
+
+	face_angles.yaw = yaw
+	ply:SetEyeAngles(face_angles)
+
 	-- Run around
 	cmd:SetForwardMove(ply:GetWalkSpeed())
 	if GetConVar("bot_crouch"):GetBool() then
@@ -14,7 +25,6 @@ libbys.hook.create_unique("StartCommand", function(ply, cmd)
 
 	-- Turn if we hit a wall
 	local face_location = ply:EyePos()
-	local face_angles = cmd:GetViewAngles()
 	local face_direction = face_angles:Forward()
 
 	local test_location = Vector(face_location)
