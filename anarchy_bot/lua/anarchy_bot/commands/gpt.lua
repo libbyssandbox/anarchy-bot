@@ -14,6 +14,16 @@ function COMMAND:describe()
 			["Authorization"] = ("Bearer %s"):format(self.m_strToken),
 			["Content-Type"] = "application/json"
 		}
+
+		self.m_PostTemplate = {
+			["url"] = "https://api.pawan.krd/v1/chat/completions",
+			["method"] = "POST",
+			["headers"] = self.m_Headers,
+			["type"] = "application/json",
+
+			["success"] = self.on_success,
+			["failed"] = self.on_fail
+		}
 	else
 		libbys.error.throw_no_halt("AnarchyBOT: Missing GPT token!")
 	end
@@ -62,16 +72,9 @@ function COMMAND:do_call(ply, ...)
 		return
 	end
 
-	HTTP({
-		["url"] = "https://api.pawan.krd/v1/chat/completions",
-		["method"] = "POST",
-		["headers"] = self.m_Headers,
-		["type"] = "application/json",
-		["body"] = util.TableToJSON(self:get_parameters(...)),
+	self.m_PostTemplate.body = util.TableToJSON(self:get_parameters(...))
 
-		["success"] = self.on_success,
-		["failed"] = self.on_fail
-	})
+	HTTP(self.m_PostTemplate)
 end
 
 return libbys.objects.define_subclass("anarchy_bot_GPTCommand", "anarchy_bot_BaseCommand", COMMAND)
