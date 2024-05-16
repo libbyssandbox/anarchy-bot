@@ -33,6 +33,7 @@ function COMMAND:get_parameters(...)
 
 	return {
 		["model"] = "pai-001-light-rp",
+		["temperature"] = 0.7,
 		["max_tokens"] = 50,
 		["messages"] = { argstr }
 	}
