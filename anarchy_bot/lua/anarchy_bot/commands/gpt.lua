@@ -32,9 +32,8 @@ function COMMAND:get_parameters(...)
 	local argstr = table.concat({ ... }, " ")
 
 	return {
-		["model"] = "pai-001",
-		["temperature"] = 0.7,
-		["max_tokens"] = 200,
+		["model"] = "pai-001-light-rp",
+		["max_tokens"] = 50,
 		["messages"] = { argstr }
 	}
 end
