@@ -20,10 +20,12 @@ function COMMAND:describe()
 end
 
 function COMMAND.on_success(...)
+	print("success")
 	print(...)
 end
 
 function COMMAND.on_fail(...)
+	print("failed")
 	print(...)
 end
 
@@ -32,10 +34,15 @@ function COMMAND:get_parameters(...)
 	local argstr = table.concat({ ... }, " ")
 
 	return {
-		["model"] = "pai-001-light-rp",
+		["model"] = "pai-001-light",
 		["temperature"] = 0.7,
 		["max_tokens"] = 50,
-		["messages"] = { argstr }
+		["messages"] = {
+			{
+				["role"] = "user",
+				["content"] = argstr
+			}
+		}
 	}
 end
 
@@ -55,7 +62,16 @@ function COMMAND:do_call(ply, ...)
 		return
 	end
 
-	http.Post("https://api.pawan.krd/v1/chat/completions", self:get_parameters(...), self.on_success, self.on_fail, self.m_Headers)
+	HTTP({
+		["url"] = "https://api.pawan.krd/v1/chat/completions",
+		["method"] = "POST",
+		["headers"] = self.m_Headers,
+		["type"] = "application/json",
+		["body"] = util.TableToJSON(self:get_parameters(...)),
+
+		["success"] = self.on_success,
+		["failed"] = self.on_fail
+	})
 end
 
 return libbys.objects.define_subclass("anarchy_bot_GPTCommand", "anarchy_bot_BaseCommand", COMMAND)
