@@ -4,6 +4,7 @@ libbys.hook.create_unique("StartCommand", function(ply, cmd)
 	if ply:IsFrozen() or ply:IsEFlagSet(EFL_BOT_FROZEN) then return end
 	if ply:Health() < ply:GetMaxHealth() then return end
 
+	-- Run around
 	cmd:SetForwardMove(ply:GetWalkSpeed())
 	if GetConVar("bot_crouch"):GetBool() then
 		cmd:AddKey(IN_DUCK)
@@ -11,6 +12,7 @@ libbys.hook.create_unique("StartCommand", function(ply, cmd)
 		cmd:RemoveKey(IN_DUCK)
 	end
 
+	-- Turn if we hit a wall
 	local face_location = ply:EyePos()
 	local face_angles = cmd:GetViewAngles()
 	local face_direction = face_angles:Forward()
