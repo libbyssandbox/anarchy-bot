@@ -24,6 +24,7 @@ include("hooks/OnRequestFullUpdate.lua")
 include("hooks/player_disconnect.lua")
 include("hooks/PostPlayerDeath.lua")
 include("hooks/StartCommand.lua")
+include("hooks/PlayerSpawn.lua")
 
 -- Init
 anarchy_bot.commands.load_static()
