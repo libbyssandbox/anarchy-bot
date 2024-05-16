@@ -55,7 +55,7 @@ function COMMAND:do_call(ply, ...)
 		return
 	end
 
-	http.Post("http://localhost:3040/v1/chat/completions", self:get_parameters(...), self.on_success, self.on_fail, self.m_Headers)
+	http.Post("https://api.pawan.krd/v1/chat/completions", self:get_parameters(...), self.on_success, self.on_fail, self.m_Headers)
 end
 
 return libbys.objects.define_subclass("anarchy_bot_GPTCommand", "anarchy_bot_BaseCommand", COMMAND)
