@@ -1,6 +1,17 @@
+if not util.IsBinaryModuleInstalled("environment") then
+	ErrorNoHalt("gmsv_environment is missing!\n")
+	return
+end
+
+if not util.IsBinaryModuleInstalled("commandline") then
+	ErrorNoHalt("gmsv_commandline is missing!\n")
+	return
+end
+
 anarchy_bot = anarchy_bot or {}
 
 require("environment")
+require("commandline")
 
 include("util.lua")
 
