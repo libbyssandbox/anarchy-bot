@@ -35,7 +35,13 @@ function COMMAND.on_success(code, body)
 	local received = util.JSONToTable(body)
 	if not istable(received) then return self.on_fail() end
 
-	PrintTable(received)
+	local choices = received.choices
+	if not istable(choices) then return self.on_fail() end
+
+	local choice = choices[math.random(1, #choices)]
+	if not istable(choice) or not istable(choice.message) or not isstring(choice.message.content) then return self.on_fail() end
+
+	anarchy_bot.bot_say(choice.message.content)
 end
 
 function COMMAND.on_fail()
