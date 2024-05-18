@@ -36,7 +36,7 @@ function COMMAND.generate_string(length, allow_symbols)
 	end
 
 	anarchy_bot.bot_say("How long do you want the string?")
-		return true
+	return true
 end
 
 function COMMAND:do_call(_, desired, x, y)
