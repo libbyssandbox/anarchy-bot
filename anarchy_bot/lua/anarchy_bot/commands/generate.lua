@@ -2,7 +2,7 @@ local COMMAND = {}
 
 function COMMAND:describe()
 	self:set_name("generate")
-	self:set_description("!generate (number | string) (min | length) (max | allow_symbols)")
+	self:set_description("!generate (number | string) (min | length <= 100) (max | allow_symbols)")
 end
 
 function COMMAND:do_call(_, desired, min, max)
@@ -25,9 +25,13 @@ function COMMAND:do_call(_, desired, min, max)
 		local length = tonumber(min)
 
 		if isnumber(length) then
-			local allow_symbols = isstring(max) and tobool(max) or false
+			if length <= 100 then
+				local allow_symbols = isstring(max) and tobool(max) or false
 
-			anarchy_bot.bot_say("\"%s\"", libbys.random.random_string(length, allow_symbols))
+				anarchy_bot.bot_say("\"%s\"", libbys.random.random_string(length, allow_symbols))
+			else
+				anarchy_bot.bot_say("Strings can only be 100 characters or less!")
+			end
 		else
 			anarchy_bot.bot_say("How long do you want the string?")
 		end
