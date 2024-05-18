@@ -16,7 +16,7 @@ function COMMAND:should_display(ply, command) -- Don't show them things they can
 end
 
 function COMMAND:do_call(ply, command_name)
-	local command = anarchy_bot.commands.find(tostring(command_name))
+	local command = anarchy_bot.commands.find(tostring(command_name):Replace("!", ""))
 
 	if command then
 		if not self:should_display(ply, command) then
