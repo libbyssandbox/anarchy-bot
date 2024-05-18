@@ -1,6 +1,8 @@
 local COMMAND = {}
 
 function COMMAND:describe()
+	self:set_cooldown(5)
+
 	self:set_name("generate")
 	self:set_description("!generate (number | string) (min | length <= 100) (max | allow_symbols)")
 end
@@ -10,7 +12,8 @@ function COMMAND.generate_number(min, max)
 	max = tonumber(max)
 
 	if not isnumber(min) or not isnumber(max) then
-		return anarchy_bot.bot_say("I need a range!")
+		anarchy_bot.bot_say("I need a range!")
+		return true
 	end
 
 	anarchy_bot.bot_say("%i", math.random(min, max))
@@ -26,12 +29,14 @@ function COMMAND.generate_string(length, allow_symbols)
 			anarchy_bot.bot_say("\"%s\"", libbys.random.random_string(length, allow_symbols))
 		else
 			anarchy_bot.bot_say("Strings can only be 100 characters or less!")
+			return true
 		end
 
 		return
 	end
 
 	anarchy_bot.bot_say("How long do you want the string?")
+		return true
 end
 
 function COMMAND:do_call(_, desired, x, y)
@@ -42,11 +47,12 @@ function COMMAND:do_call(_, desired, x, y)
 	desired = desired:lower()
 
 	if desired == "number" then
-		self.generate_number(x, y)
+		return self.generate_number(x, y)
 	elseif desired == "string" then
-		self.generate_string(x, y)
+		return self.generate_string(x, y)
 	else
 		anarchy_bot.bot_say("What the FUCK is a %s", desired)
+		return true
 	end
 end
 
