@@ -20,5 +20,6 @@ include("callbacks/ensure_exists.lua")
 include("callbacks/leave.lua")
 include("callbacks/spawn_angles.lua")
 include("callbacks/wander.lua")
+include("callbacks/welcome.lua")
 
 -- Commands
