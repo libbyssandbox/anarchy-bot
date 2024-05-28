@@ -1,4 +1,4 @@
-hook.Add("PlayerSpawn", "anarchy_bot", function(ply)
+anarchy_bot:add_callback("PlayerSpawn", function(ply)
 	if ply ~= anarchy_bot:get_bot() then return end
 
 	-- Spawn facing a random direction

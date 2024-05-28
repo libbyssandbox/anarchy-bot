@@ -1,5 +1,4 @@
-gameevent.Listen("player_disconnect")
-hook.Add("player_disconnect", "anarchy_bot", function()
+anarchy_bot:add_callback("player_disconnect", function()
 	if player.GetCount() - 1 > 0 then return end
 
 	-- All our friends are gone

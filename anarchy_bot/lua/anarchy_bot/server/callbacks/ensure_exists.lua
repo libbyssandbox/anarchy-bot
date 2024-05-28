@@ -1,4 +1,4 @@
-hook.Add("PlayerInitialSpawn", "anarchy_bot", function(ply)
+anarchy_bot:add_callback("PlayerInitialSpawn", function(ply)
 	if ply:IsBot() then return end
 
 	anarchy_bot:ensure_bot()

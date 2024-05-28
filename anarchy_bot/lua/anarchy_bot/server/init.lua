@@ -1,7 +1,9 @@
 if not include("binaries.lua") then return end
 
 anarchy_bot = anarchy_bot or {}
+
 anarchy_bot.player = anarchy_bot.player or FindMetaTable("Player")
+anarchy_bot.bot_hooks = anarchy_bot.bot_hooks or {}
 
 -- Get rid of the old bot
 if IsValid(anarchy_bot.bot_ref) then
@@ -11,10 +13,12 @@ end
 -- Utility
 include("anarchy_bot.lua")
 
--- Hooks
-include("hooks/playerinitialspawn.lua")
-include("hooks/player_disconnect.lua")
-include("hooks/playerspawn.lua")
+-- Hooks & Callbacks
 include("hooks/startcommand.lua")
+
+include("callbacks/ensure_exists.lua")
+include("callbacks/leave.lua")
+include("callbacks/spawn_angles.lua")
+include("callbacks/wander.lua")
 
 -- Commands
