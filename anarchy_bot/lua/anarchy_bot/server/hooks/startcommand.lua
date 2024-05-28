@@ -2,6 +2,11 @@ local tr = {}
 local td = { output = tr }
 
 local function wander(bot, cmd)
+	-- Styling
+	if bot:HasWeapon("weapon_physcannon") then
+		cmd:SelectWeapon(bot:GetWeapon("weapon_physcannon"))
+	end
+
 	-- Walk around
 	cmd:SetForwardMove(bot:GetWalkSpeed())
 
