@@ -32,3 +32,4 @@ include("command_manager.lua")
 
 include("commands/test.lua")
 include("commands/uptime.lua")
+include("commands/yes.lua")
