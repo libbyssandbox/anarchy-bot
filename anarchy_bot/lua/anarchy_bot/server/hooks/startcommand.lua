@@ -2,14 +2,8 @@ local tr = {}
 local td = { output = tr }
 
 local function wander(bot, cmd)
+	-- Walk around
 	cmd:SetForwardMove(bot:GetWalkSpeed())
-
-	if GetConVar("bot_crouch"):GetBool() then
-		cmd:AddKey(IN_DUCK)
-	else
-		-- For some reason on 64bit IN_DUCK is always pressed by default
-		cmd:RemoveKey(IN_DUCK)
-	end
 
 	-- Check for collision with a wall
 	local face_pos = bot:EyePos()
@@ -39,6 +33,13 @@ hook.Add("StartCommand", "anarchy_bot", function(ply, cmd)
 	if ply ~= anarchy_bot:get_bot() then return end
 
 	if ply:IsFrozen() or ply:IsEFlagSet(EFL_BOT_FROZEN) then return end
+
+	if GetConVar("bot_crouch"):GetBool() then
+		cmd:AddKey(IN_DUCK)
+	else
+		-- For some reason on 64bit IN_DUCK is always pressed by default
+		cmd:RemoveKey(IN_DUCK)
+	end
 
 	-- TODO: Attack
 
