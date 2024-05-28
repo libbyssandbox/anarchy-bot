@@ -1,4 +1,4 @@
-hook.Add("PlayerSpawn", "anarchy_bot", function ply(arguments)
+hook.Add("PlayerSpawn", "anarchy_bot", function(ply)
 	if ply ~= anarchy_bot:get_bot() then return end
 
 	local face_angles = ply:EyeAngles()
