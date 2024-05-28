@@ -1,6 +1,7 @@
 if not include("binaries.lua") then return end
 
 anarchy_bot = anarchy_bot or {}
+anarchy_bot.player = anarchy_bot.player or FindMetaTable("Player")
 
 -- Get rid of the old bot
 if IsValid(anarchy_bot.bot_ref) then
