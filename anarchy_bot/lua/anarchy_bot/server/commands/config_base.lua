@@ -6,7 +6,7 @@ function config:init()
 	self.m_bAdminOnly = false
 	self.m_bUseGlobalCooldown = false
 
-	self.m_iCooldownDuration = 0
+	self.m_iCooldownDuration = 1
 end
 
 -- Getters and Setters
