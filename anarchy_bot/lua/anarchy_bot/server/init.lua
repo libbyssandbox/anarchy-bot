@@ -2,16 +2,18 @@ if not include("binaries.lua") then return end
 
 anarchy_bot = anarchy_bot or {}
 
+anarchy_bot.entity = anarchy_bot.entity or FindMetaTable("Entity")
 anarchy_bot.player = anarchy_bot.player or FindMetaTable("Player")
-anarchy_bot.bot_hooks = anarchy_bot.bot_hooks or {}
 
--- Get rid of the old bot
-if IsValid(anarchy_bot.bot_ref) then
-	anarchy_bot.bot_ref:Kick("Reloading")
-end
+anarchy_bot.bot_hooks = anarchy_bot.bot_hooks or {}
+anarchy_bot.bot_commands = {}
 
 -- Utility
 include("anarchy_bot.lua")
+
+-- Cleanup old stuff
+anarchy_bot:call(anarchy_bot.player.Kick, "Reloading")
+anarchy_bot:empty_callbacks()
 
 -- Hooks & Callbacks
 include("hooks/startcommand.lua")

@@ -71,3 +71,11 @@ function anarchy_bot:remove_callback(name, id)
 
 	table.remove(callbacks, id)
 end
+
+function anarchy_bot:empty_callbacks()
+	for name, _ in next, self.bot_hooks do
+		hook.Remove(name, "anarchy_bot")
+	end
+
+	table.empty(self.bot_hooks)
+end
