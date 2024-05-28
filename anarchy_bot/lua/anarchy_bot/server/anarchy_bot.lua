@@ -9,6 +9,10 @@ function anarchy_bot:call(func, ...)
 	return func(self.bot_ref, ...)
 end
 
+function anarchy_bot:say(format, ...)
+	self:call(self.player.Say, tostring(format):format(...))
+end
+
 function anarchy_bot:spawn_bot()
 	local existing = self:get_bot()
 
@@ -28,7 +32,7 @@ function anarchy_bot:ensure_bot()
 end
 
 function anarchy_bot:run_callbacks(name, ...)
-	local callbacks = self.bot_hooks[name]
+	local callbacks = self.callbacks[name]
 	if not callbacks then return end
 
 	for i = 1, #callbacks do
@@ -43,11 +47,11 @@ end
 function anarchy_bot:add_callback(name, callback)
 	if not isfunction(callback) then return end
 
-	local callbacks = self.bot_hooks[name]
+	local callbacks = self.callbacks[name]
 
 	if not callbacks then
 		callbacks = {}
-		self.bot_hooks[name] = callbacks
+		self.callbacks[name] = callbacks
 
 		-- Auto hook
 		local existing_hooks = hook.GetTable()[name]
@@ -66,16 +70,16 @@ function anarchy_bot:add_callback(name, callback)
 end
 
 function anarchy_bot:remove_callback(name, id)
-	local callbacks = self.bot_hooks[name]
+	local callbacks = self.callbacks[name]
 	if not callbacks or not callbacks[id] then return end
 
 	table.remove(callbacks, id)
 end
 
 function anarchy_bot:empty_callbacks()
-	for name, _ in next, self.bot_hooks do
+	for name, _ in next, self.callbacks do
 		hook.Remove(name, "anarchy_bot")
 	end
 
-	table.empty(self.bot_hooks)
+	table.Empty(self.callbacks)
 end
