@@ -14,5 +14,6 @@ include("anarchy_bot.lua")
 -- Hooks
 include("hooks/playerinitialspawn.lua")
 include("hooks/player_disconnect.lua")
+include("hooks/playerspawn.lua")
 
 -- Commands
