@@ -8,6 +8,8 @@ anarchy_bot:add_callback("player_disconnect", function(data)
 	if data.bot ~= 1 then return end
 
 	timer.Simple(0, function()
+		if player.GetCount() < 1 then return end
+
 		anarchy_bot:ensure_bot()
 	end)
 end)
