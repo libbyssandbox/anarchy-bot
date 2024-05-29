@@ -83,7 +83,14 @@ function command:apply_cooldown(ply)
 	end
 end
 
+function command:should_call(ply, ...)
+	-- For override
+	return true
+end
+
 function command:can_call(ply, ...)
+	if not self:should_call(ply, ...) then return false end
+
 	if not self:get_config():get_enabled() then return false end
 	if self:get_config():get_admin_only() and not ply:IsAdmin() then return false end
 
@@ -98,11 +105,6 @@ function command:can_call(ply, ...)
 	return true
 end
 
-function command:should_call(ply, ...)
-	-- For override
-	return true
-end
-
 function command:call(ply, ...)
 	local bot = anarchy_bot:get_bot()
 
@@ -110,7 +112,6 @@ function command:call(ply, ...)
 	if bot == ply then return end -- Should never happen
 
 	if not self:can_call(ply, ...) then return end
-	if not self:should_call(ply, ...) then return end
 
 	if not self:do_call(bot, ply, ...) then
 		self:apply_cooldown(ply)
