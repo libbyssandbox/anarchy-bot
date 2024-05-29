@@ -22,6 +22,10 @@ function anarchy_bot:spawn_bot()
 
 	self.bot_ref = player.CreateNextBot("AnarchyBOT")
 
+	if not self:get_bot():IsValid() then
+		print("No room to spawn AnarchyBot! Poor fella :(")
+	end
+
 	return self:get_bot()
 end
 
