@@ -28,7 +28,7 @@ function anarchy_bot:add_callback(name, callback)
 
 			gameevent.Listen(CALLBACK_NAME) -- Auto listen
 			hook.Add(CALLBACK_NAME, "anarchy_bot", function(...)
-				anarchy_bot.run_callbacks(anarchy_bot, CALLBACK_NAME, ...)
+				return anarchy_bot.run_callbacks(anarchy_bot, CALLBACK_NAME, ...)
 			end)
 		end
 	end
