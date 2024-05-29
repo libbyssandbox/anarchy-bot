@@ -2,6 +2,8 @@ local command = {}
 
 function command:describe()
 	self:set_description("!help | !help (command_name)")
+
+	self:get_config():set_cooldown_duration(3)
 end
 
 function command:help_with(found_command)
