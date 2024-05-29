@@ -4,7 +4,7 @@ function command:describe()
 	self.m_TraceResult = {}
 	self.m_TraceData = { output = self.m_TraceResult }
 
-	self:set_description("!teleport (target | x) (y) (z)")
+	self:set_description("!moveto (target | x) (y) (z)")
 
 	self:get_config():set_cooldown_duration(10)
 end
@@ -81,6 +81,4 @@ function command:do_call(bot, ply, x, y, z)
 	return true
 end
 
-anarchy_bot:register_command(command, "teleport")
-anarchy_bot:register_command_alias("teleport", "tp")
-anarchy_bot:register_command_alias("teleport", "moveto")
+anarchy_bot:register_command(command, "moveto")
