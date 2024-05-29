@@ -21,7 +21,9 @@ anarchy_bot:drop_commands()
 
 -- Try to come back in a bit if reloaded
 timer.Simple(0, function()
-	anarchy_bot:ensure_bot()
+	if player.GetCount() > 0 then
+		anarchy_bot:ensure_bot()
+	end
 end)
 
 -- Hooks & Callbacks
