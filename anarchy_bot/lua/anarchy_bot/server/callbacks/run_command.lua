@@ -5,11 +5,9 @@ anarchy_bot:add_callback("player_say", function(data)
 	local msg = data.text
 	if not msg:StartsWith("!") then return end
 
-	local args = msg:sub(2):Split(" ")
+	local args = msg:Split(" ")
 
-	local command_name = args[1]
-	local command = anarchy_bot.commands[command_name:lower()]
-
+	local command = anarchy_bot:find_command(args[1])
 	if not command then return end
 
 	if data.teamonly == 1 then

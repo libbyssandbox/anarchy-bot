@@ -7,6 +7,7 @@ anarchy_bot.player = anarchy_bot.player or FindMetaTable("Player")
 
 anarchy_bot.callbacks = anarchy_bot.callbacks or {}
 anarchy_bot.commands = {}
+anarchy_bot.command_alias = {}
 
 -- Utility
 include("anarchy_bot.lua")
@@ -45,3 +46,4 @@ include("commands/no.lua")
 include("commands/generate.lua")
 include("commands/help.lua")
 include("commands/roll.lua")
+include("commands/teleport.lua")
