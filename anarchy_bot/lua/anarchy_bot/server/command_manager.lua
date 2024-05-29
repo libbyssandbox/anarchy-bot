@@ -17,5 +17,7 @@ function anarchy_bot:register_command(metatable, name)
 	new_command:init()
 	new_command:describe()
 
+	new_command.m_strName = name
+
 	anarchy_bot.commands[name] = new_command
 end
