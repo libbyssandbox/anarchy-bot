@@ -16,8 +16,8 @@ function command:get_description()
 	return self.m_strDescription
 end
 
-function command:set_description(description)
-	self.m_strDescription = tostring(description):Trim()
+function command:set_description(description, ...)
+	self.m_strDescription = tostring(description):format(...):Trim()
 end
 
 function command:get_name()
