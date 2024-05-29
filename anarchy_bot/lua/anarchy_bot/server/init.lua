@@ -10,10 +10,18 @@ anarchy_bot.commands = {}
 
 -- Utility
 include("anarchy_bot.lua")
+include("callback_manager.lua")
+include("command_manager.lua")
 
 -- Cleanup old stuff
 anarchy_bot:call(anarchy_bot.player.Kick, "Reloading")
 anarchy_bot:empty_callbacks()
+anarchy_bot:drop_commands()
+
+-- Try to come back in a bit if reloaded
+timer.Simple(0, function()
+	anarchy_bot:ensure_bot()
+end)
 
 -- Hooks & Callbacks
 include("hooks/startcommand.lua")
@@ -26,9 +34,8 @@ include("callbacks/welcome.lua")
 include("callbacks/run_command.lua")
 
 -- Commands
-include("commands/base.lua")
 include("commands/config_base.lua")
-include("command_manager.lua")
+include("commands/base.lua")
 
 include("commands/test.lua")
 include("commands/uptime.lua")

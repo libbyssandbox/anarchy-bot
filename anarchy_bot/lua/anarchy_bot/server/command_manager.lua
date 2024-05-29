@@ -21,3 +21,9 @@ function anarchy_bot:register_command(metatable, name)
 
 	anarchy_bot.commands[name] = new_command
 end
+
+function anarchy_bot:drop_commands()
+	for k, _ in next, anarchy_bot.commands do
+		anarchy_bot.commands[k] = nil
+	end
+end
