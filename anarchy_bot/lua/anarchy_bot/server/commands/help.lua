@@ -29,6 +29,10 @@ end
 
 function command:do_call(bot, ply, command_name)
 	if isstring(command_name) then
+		if command_name:StartsWith("!") then
+			command_name = command_name:sub(2)
+		end
+
 		return self:help_with(anarchy_bot.commands[command_name:lower()])
 	else
 		return self:help_all()
