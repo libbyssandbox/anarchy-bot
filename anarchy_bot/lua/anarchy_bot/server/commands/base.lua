@@ -111,8 +111,6 @@ function command:call(ply, ...)
 	if not IsValid(bot) or not IsValid(ply) then return end
 	if bot == ply then return end -- Should never happen
 
-	if not self:can_call(ply, ...) then return end
-
 	if not self:do_call(bot, ply, ...) then
 		self:apply_cooldown(ply)
 	end
