@@ -24,3 +24,4 @@ end
 
 anarchy_bot:register_command(command, "addons")
 anarchy_bot:register_command_alias("addons", "collection")
+anarchy_bot:register_command_alias("addons", "content")
