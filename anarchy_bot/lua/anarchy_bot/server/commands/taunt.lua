@@ -18,6 +18,9 @@ function command:describe()
 	}
 
 	self:set_description("!taunt | !taunt (^)")
+
+	self:get_config():set_cooldown_duration(3)
+	self:get_config():set_use_global_cooldown(true)
 end
 
 function command:do_call(bot, ply, target)
