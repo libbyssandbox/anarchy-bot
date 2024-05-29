@@ -32,6 +32,7 @@ include("callbacks/spawn_angles.lua")
 include("callbacks/wander.lua")
 include("callbacks/welcome.lua")
 include("callbacks/run_command.lua")
+include("callbacks/respawn.lua")
 
 -- Commands
 include("commands/config_base.lua")
