@@ -30,3 +30,25 @@ function anarchy_bot:ensure_bot()
 
 	self:spawn_bot()
 end
+
+function anarchy_bot:find_player(data)
+	data = tostring(data):Trim()
+
+	-- Try simple lookups
+	local ply = player.GetBySteamID(data)
+	if ply then return ply end
+
+	local ply = player.GetBySteamID64(data)
+	if ply then return ply end
+
+	-- Find by username
+	data = data:lower()
+
+	for _, ply in player.Iterator() do
+		if ply:GetName():lower():find(data) then
+			return ply
+		end
+	end
+
+	return NULL
+end
