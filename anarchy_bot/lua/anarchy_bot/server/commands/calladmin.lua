@@ -20,4 +20,4 @@ function command:do_call(bot, ply, ...)
 end
 
 anarchy_bot:register_command(command, "calladmin")
-anarchy_bot:register_command(command, "helpimretarded")
+anarchy_bot:register_command_alias("calladmin", "helpimretarded")
