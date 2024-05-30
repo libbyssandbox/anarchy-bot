@@ -42,7 +42,7 @@ function anarchy_bot:find_player(data)
 	local ply = player.GetBySteamID(data)
 	if ply then return ply end
 
-	local ply = player.GetBySteamID64(data)
+	ply = player.GetBySteamID64(data)
 	if ply then return ply end
 
 	-- Find by username
