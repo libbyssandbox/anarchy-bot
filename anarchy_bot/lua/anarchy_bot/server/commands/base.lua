@@ -88,11 +88,16 @@ function command:should_call(ply, ...)
 	return true
 end
 
-function command:can_call(ply, ...)
-	if not self:should_call(ply, ...) then return false end
-
+function command:check_permissions(ply)
 	if not self:get_config():get_enabled() then return false end
 	if self:get_config():get_admin_only() and not ply:IsAdmin() then return false end
+
+	return true
+end
+
+function command:can_call(ply, ...)
+	if not self:check_permissions(ply, ...) then return false end
+	if not self:should_call(ply, ...) then return false end
 
 	if self:has_cooldown_for(ply) then
 		local cooldown_duration = math.ceil(self:get_cooldown_for(ply) - CurTime())
@@ -106,6 +111,8 @@ function command:can_call(ply, ...)
 end
 
 function command:call(ply, ...)
+	if not self:can_call(ply, ...) then return end
+
 	local bot = anarchy_bot:get_bot()
 
 	if not IsValid(bot) or not IsValid(ply) then return end

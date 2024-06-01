@@ -17,7 +17,7 @@ anarchy_bot:add_callback("player_say", function(data)
 
 	-- unpack city is slow, but it's only twice so it's fine
 	-- :clueless:
-	if not command:can_call(ply, unpack(args, 2)) then
+	if not command:check_permissions(ply) then
 		anarchy_bot:say("Noobens are not allowed to run this command, %s", ply:GetName())
 		return
 	end
