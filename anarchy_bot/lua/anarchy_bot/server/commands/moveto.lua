@@ -51,7 +51,7 @@ function command:do_call(bot, ply, x, y, z)
 	end
 
 	-- Try a player
-	local target = anarchy_bot:find_player(x)
+	local target = libbys.util.find_player(x)
 
 	if IsValid(target) then
 		local target_origin = target:GetPos()
