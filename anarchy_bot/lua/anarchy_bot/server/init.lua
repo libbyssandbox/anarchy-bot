@@ -1,9 +1,7 @@
-if not include("binaries.lua") then return end
+require("libbys")
+libbys.util.require_binary("environment")
 
 anarchy_bot = anarchy_bot or {}
-
-anarchy_bot.entity = anarchy_bot.entity or FindMetaTable("Entity")
-anarchy_bot.player = anarchy_bot.player or FindMetaTable("Player")
 
 anarchy_bot.callbacks = anarchy_bot.callbacks or {}
 anarchy_bot.commands = {}
