@@ -10,7 +10,7 @@ function anarchy_bot:call(func, ...)
 end
 
 function anarchy_bot:say(format, ...)
-	self:call(self.player.Say, tostring(format):format(...))
+	self:call(libbys.metatables.Player.Say, tostring(format):format(...))
 end
 
 function anarchy_bot:spawn_bot()

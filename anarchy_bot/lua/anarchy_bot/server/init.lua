@@ -13,7 +13,7 @@ include("callback_manager.lua")
 include("command_manager.lua")
 
 -- Cleanup old stuff
-anarchy_bot:call(anarchy_bot.player.Kick, "Reloading")
+anarchy_bot:call(libbys.metatables.Player.Kick, "Reloading")
 anarchy_bot:empty_callbacks()
 anarchy_bot:drop_commands()
 
