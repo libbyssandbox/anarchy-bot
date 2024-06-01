@@ -51,6 +51,7 @@ end
 
 function command:generate_string(length, allow_symbols)
 	length = tonumber(length)
+	allow_symbols = tobool(allow_symbols)
 
 	if not isnumber(length) then
 		anarchy_bot:say("How long do you want the string to be?")
@@ -62,20 +63,7 @@ function command:generate_string(length, allow_symbols)
 		return true
 	end
 
-	local generated = {}
-
-	for _ = 1, length do
-		local master_set = (allow_symbols and math.random() > 0.5) and self.m_SymbolSets or self.m_AlphanumericSets
-
-		local sub_index = math.random(1, #master_set)
-		local sub_set = master_set[sub_index]
-
-		local character = math.random(sub_set[1], sub_set[2])
-
-		table.insert(generated, string.char(character))
-	end
-
-	anarchy_bot:say("Your string is: %s", table.concat(generated))
+	anarchy_bot:say("Your string is: %s", libbys.util.random_string(length, allow_symbols))
 end
 
 function command:do_call(bot, ply, desired, a, b)
