@@ -1,5 +1,5 @@
 local function respawn_bot()
-	if anarchy_bot:call(libbys.metatables.Players.Alive) then return end -- Don't respawn him if he's alive
+	if anarchy_bot:call(libbys.metatables.Player.Alive) then return end -- Don't respawn him if he's alive
 
 	anarchy_bot:call(libbys.metatables.Entity.Spawn)
 end
